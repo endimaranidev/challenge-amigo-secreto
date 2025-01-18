@@ -5,7 +5,7 @@ Bem-vindo ao **Amigo Secreto**! Um app simples e divertido para sortear amigos s
 ---
 
 ## 📋 Como usar?  
-1. **Adicione amigos**: Digite o nome no campo e clique em ➕ **Adicionar**.  
+1. **Adicione amigos**: Digite o nome no campo e clique em **Adicionar**.  
 2. **Sortear**: Clique no botão 🎲 **Sortear amigo** para descobrir quem será o amigo secreto!  
 3. **Repita**: Continue adicionando ou sorteando conforme necessário. 🎉  
 
