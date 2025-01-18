@@ -14,7 +14,7 @@ Bem-vindo ao **Amigo Secreto**! Um app simples e divertido para sortear amigos s
 ## 🛠️ Tecnologias  
 - **HTML** 🖼️  
 - **CSS** 🎨  
-- **JavaScript** ![JavaScript Logo](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg)  
+- **JavaScript** <img src="assets/js-logo.png" alt="JavaScript Logo" width="25px" height="25px">  
 
 ---
 
