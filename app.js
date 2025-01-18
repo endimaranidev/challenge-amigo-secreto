@@ -1,30 +1,39 @@
-let friendsList = []; //Variável para armazenar a lista de amigos
+const friendsList = []; //Variável para armazenar a lista de amigos
 
-let friendNameInput = document.querySelector("#amigo"); //Variável para pegar o input onde será digitado o nome
+const friendNameInput = document.querySelector("#amigo"); //Variável para pegar o input onde será digitado o nome
 
-let divInput = document.querySelector(".input-wrapper"); //Variável que seleciona a div do input para criar um span logo após.
+const divInput = document.querySelector(".input-wrapper"); //Variável que seleciona a div do input para criar um span logo após.
 
-let spanAlert = document.createElement("span"); // Variável que cria uma tag span
+const spanAlert = document.createElement("span"); // Variável que cria uma tag span
 
-let ulList = document.getElementById("listaAmigos"); // Variável para pegar a ul listaAmigos para exibir os nomes
+const ulList = document.getElementById("listaAmigos"); // Variável para pegar a ul listaAmigos para exibir os nomes
 
-let ulResult = document.getElementById("resultado");
+const ulResult = document.getElementById("resultado");
+
+/* 
+    Como era algo que precisava acontecer mais de uma vez no código, pois o mesmo span serve para exibir o erro do input em branco ao adicionar amigo, e para avisar que todos os amigos já foram sorteados. Foi criada uma função para evitar repetição de código. 
+*/ 
+function showAlertMessage(message) {
+	// Adiciona um texto ao span criado, passando como parâmetro o texto que achar necessário para alertar o usuário
+	spanAlert.textContent = message;
+
+	/* Cria uma classe "alertMessage" para estilização pelo arquivo style.css. 
+        A título de ilustração, o Javascript cria algo como: 
+        <span class="alertMessage"></span> para poder utilizar essa classe no arquivo CSS
+    */
+	spanAlert.classList.add("alertMessage");
+
+	// Criar o span logo após a div que contém a caixa de texto
+	divInput.after(spanAlert);
+}
 
 // Função para adicionar o amigo no Array/Lista com algumas validações
 function adicionarAmigo() {
 	// Condição -> se o campo estiver vazio:
 	if (friendNameInput.value === "") {
-		// Adiciona um texto ao span criado anteriormente
-		spanAlert.textContent = "Preencha o campo com o nome de um amigo";
 
-		// Adiciona uma cor ao texto
-		spanAlert.style.color = "red";
-
-		// Adiciona um espaçamento na margem superior de 20 px
-		spanAlert.style.marginTop = "20px";
-
-		// Cria o span logo após a caixa de texto
-		divInput.after(spanAlert);
+        //Chama a função passando o texto desejado como parâmetro que será exibido no span. O parâmetro message recebe esse texto digitado
+		showAlertMessage("Preencha o campo com o nome de um amigo!");
 
 		// Condição -> caso não esteja vazio
 	} else {
@@ -54,21 +63,11 @@ function adicionarAmigo() {
 
 // Função para sortear um amigo
 function sortearAmigo() {
-	// Verifica se o array está vazio através do length (se for 0 é porque nenhum elemento foi adicionado)
-	if (friendsList.length === 0) {
-		// Adiciona um texto ao span criado anteriormente
-		spanAlert.textContent = "Você não adicionou nenhum amigo!";
-
-		// Adiciona uma cor ao texto
-		spanAlert.style.color = "red";
-
-		// Adiciona um espaçamento na margem superior de 20 px
-		spanAlert.style.marginTop = "20px";
-
-		// Cria o span logo após a caixa de texto
-		divInput.after(spanAlert);
-	} else {
+	// Verifica se o array não está vazio através do .length (se for 0 é porque nenhum elemento foi adicionado)
+	if (friendsList.length !== 0) {
+		// Limpar a mensagem de alerta caso o array contenha elementos ao apertar o botão
 		spanAlert.textContent = "";
+
 		// O Math.random sorteia números apenas entre 0 e 1 (casas decimais), por isso precisa multiplicar pelo comprimento da lista, para dar um valor correspondente à quantidade de itens dentro dela (ainda em decimais).
 		// Ao passo que o Math.floor arredonda o número para baixo, garantindo que o número seja inteiro e igual à um número dentro do limite de elementos da lista.
 		const randomIndex = Math.floor(Math.random() * friendsList.length);
@@ -80,22 +79,12 @@ function sortearAmigo() {
 		// Adiciona o amigo sorteado ao texto da ul
 		ulResult.textContent = sortedFriend;
 
-		if (friendsList.length === 0) {
-			// Adiciona um texto ao span criado anteriormente
-			spanAlert.textContent =
-				"Todos foram sorteados, adicione novos amigos para sortear!";
-
-			// Adiciona uma cor ao texto
-			spanAlert.style.color = "red";
-
-			// Adiciona um espaçamento na margem superior de 20 px
-			spanAlert.style.marginTop = "20px";
-
-			// Cria o span logo após a caixa de texto
-			divInput.after(spanAlert);
-		} else {
-			// Remove o amigo que já foi sorteado da lista com o método splice, utlizando o índice sorteado como parâmetro e passando 1 como argumento para remover um único item.
-			friendsList.splice(randomIndex, 1);
-		}
+		// Remove o amigo que já foi sorteado da lista com o método splice, utlizando o índice sorteado como parâmetro e passando 1 como argumento para remover um único item (teste sem o agumento 1 para ver como ele se comporta).
+		friendsList.splice(randomIndex, 1);
+	} else {
+		// Adiciona um texto ao span quando todos os nomes forem sorteados, ou seja, quanto o length da lista chegar a 0.
+		showAlertMessage(
+			"Todos os amigos foram sorteados, adicione novos nomes para continuar!"
+		);
 	}
 }
