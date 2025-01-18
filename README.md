@@ -25,9 +25,4 @@ Bem-vindo ao **Amigo Secreto**! Um app simples e divertido para sortear amigos s
 
 ---
 
-## 🌟 Dica  
-Use sua criatividade para personalizar com estilos e imagens! 🎨  
-
----
-
 Divirta-se com o sorteio! 😄🎁
