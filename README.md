@@ -1,6 +1,8 @@
 # Amigo Secreto 🎉🎁  
 
-Bem-vindo ao **Amigo Secreto**! Um app simples e divertido para sortear amigos secretos e tornar suas festas mais emocionantes. 🥳✨  
+Bem-vindo ao **Amigo Secreto**! Um app criado como desafio do programa ONE - Oracle Next Education, promovido pela Alura para testar e aprimorar o conhecimento dos alunos em Javascript.  
+
+Divirta-se 🥳✨  
 
 ---
 
